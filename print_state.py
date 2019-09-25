@@ -1,4 +1,4 @@
-file_handle=open("1.txt",mode="w")
+file_handle=open("2.txt",mode="w")
 def print_state(left,right,edge,i):
     print("第",i,"轮")
     file_handle.writelines(["第",str(i),"轮\n"])
