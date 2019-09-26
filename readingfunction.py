@@ -1,3 +1,7 @@
+
+#-*- coding : utf-8 -*-
+# coding: utf-8
+
 from graph import Graph
 from print_state import print_state
 from match import matching

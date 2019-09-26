@@ -13,6 +13,7 @@ class Graph():
             lines=file_object.readlines()
         start_tag='第'+str(round)+'轮'+'\n'
         if lines[self.line]==start_tag:
+            print("jinru")
             self.line=self.line+2
             if lines[self.line]!="右边\n":
                 self.left.append(list(map(int,lines[self.line].split(' '))))
