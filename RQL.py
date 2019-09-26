@@ -7,11 +7,11 @@ import time_update
 filename="1.txt"
 graph=Graph(filename)
 u=0
-alpha=0.3
-lmin=9
-lmax=15
-C=9
-H=1000
+alpha=1
+lmin=8
+lmax=16
+C=16
+H=19999
 u=0
 #初始化Q表
 Q={}
@@ -23,7 +23,7 @@ for i in range(C):
                 Q[Q_temp]=random.randint(9,15)
 
 #执行
-for i in range(200):
+for i in range(1):
     for t in range(lmin):
         graph.time_update()
         graph.input_new_point(t)
@@ -61,10 +61,8 @@ for i in range(200):
             Q[(l_num,r_num,l,l_temp)]=Q[(l_num,r_num,l,l_temp)]+alpha*(r+q1-Q[(l_num,r_num,l,l_temp)])
             t=t+lmin
             l=lmin
-            print("b")
         else:
             graph.time_update()
-            print("oo")
             graph.input_new_point(t)
             l_numl=len(graph.left)
             r_numl=len(graph.right)
@@ -78,4 +76,4 @@ for i in range(200):
             l=l+1
             t=t+1
         #print_state(graph.left,graph.right,graph.edge,i)
-        print("得分",u)
+        print("得分",u,"轮数",t)

@@ -11,7 +11,7 @@ edge=[]
 num=0
 u=0
 file_handle=open("1.txt",mode="w")
-for i in range(5000):
+for i in range(20000):
     edge_temp=[]
     time_update(left,right,edge)
     file_handle.writelines(["第",str(i),"轮\n"])

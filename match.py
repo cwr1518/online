@@ -20,13 +20,10 @@ def matching(left,right,edge):
             else:
                 row=[0]*M_size
                 matrix.append(row)
-            print(row)
         matrix=matrix
         cost=np.array(matrix)
         cost=100-cost
         row_ind,col_ind=linear_sum_assignment(cost)
-        print(row_ind)
-        print(col_ind)
         cost=100-cost
         u1=cost[row_ind,col_ind].sum()
         right_delet=[]

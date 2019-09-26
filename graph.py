@@ -9,11 +9,11 @@ class Graph():
         self.line=0
 
     def input_new_point(self,round):
-        with open(self.filename) as file_object:
+        with open(self.filename,encoding='utf-8') as file_object:
             lines=file_object.readlines()
         start_tag='第'+str(round)+'轮'+'\n'
         if lines[self.line]==start_tag:
-            print("jinru")
+            #print("jinru")
             self.line=self.line+2
             if lines[self.line]!="右边\n":
                 self.left.append(list(map(int,lines[self.line].split(' '))))
@@ -32,7 +32,7 @@ class Graph():
                     self.line=self.line+1
             while lines[self.line]!="第"+str(round+1)+"轮"+"\n" and self.line!=len(lines):
                 edge_temp=list(map(int,lines[self.line].split(' ')))
-                print(len(self.left),"h")
+                #print(len(self.left),"h")
                 for i in range(len(self.left)):
                     if edge_temp[0]==self.left[i][0]:
                         for ii in range(len(self.right)):
