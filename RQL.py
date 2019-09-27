@@ -7,11 +7,11 @@ import time_update
 filename="1.txt"
 graph=Graph(filename)
 u=0
-alpha=1
-lmin=8
-lmax=16
-C=16
-H=19999
+alpha=0.3
+lmin=30
+lmax=50
+C=50
+H=20000
 u=0
 #初始化Q表
 Q={}
@@ -20,7 +20,7 @@ for i in range(C):
         for iii in range(lmin,lmax):
             for iiii in range(iii,lmax):
                 Q_temp=(i,ii,iii,iiii)
-                Q[Q_temp]=random.randint(9,15)
+                Q[Q_temp]=random.randint(3,4)
 
 #执行
 for i in range(1):
@@ -35,6 +35,8 @@ for i in range(1):
     while t<H:
         q=0
         l_temp=0
+        l_num=len(graph.left)
+        r_num=len(graph.right)
         #找到最大的Q值对应的ll
         for ll in range(l,lmax):
             if Q[(l_num,r_num,l,ll)]>q:
@@ -75,5 +77,6 @@ for i in range(1):
             Q[(l_num,r_num,l,l_temp)]=Q[(l_num,r_num,l,l_temp)]+alpha*(q1-Q[(l_num,r_num,l,l_temp)])
             l=l+1
             t=t+1
+
         #print_state(graph.left,graph.right,graph.edge,i)
         print("得分",u,"轮数",t)

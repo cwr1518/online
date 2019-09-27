@@ -31,7 +31,7 @@ class Graph():
                 else:
                     self.line=self.line+1
             while lines[self.line]!="第"+str(round+1)+"轮"+"\n" and self.line!=len(lines):
-                edge_temp=list(map(int,lines[self.line].split(' ')))
+                edge_temp=list(map(float,lines[self.line].split(' ')))
                 #print(len(self.left),"h")
                 for i in range(len(self.left)):
                     if edge_temp[0]==self.left[i][0]:

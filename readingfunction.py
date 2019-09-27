@@ -11,11 +11,11 @@ import match
 filename="1.txt"
 graph=Graph(filename)
 u=0
-for i in range(19999):
+for i in range(20000):
     graph.time_update()
     graph.input_new_point(i)
-    if i%10==0:
-        u=matching(graph.left,graph.right,graph.edge)+u
+    #if i%10==0:
+    u=matching(graph.left,graph.right,graph.edge)+u
     #print_state(graph.left,graph.right,graph.edge,i)
     print("得分",u,"轮数",i)
 
