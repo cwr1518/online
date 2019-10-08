@@ -4,12 +4,12 @@ from print_state import print_state
 from match import matching
 import time_update
 
-filename="1.txt"
+filename="11.txt"
 graph=Graph(filename)
 u=0
 alpha=0.3
-lmin=30
-lmax=50
+lmin=3
+lmax=10
 C=50
 H=20000
 u=0

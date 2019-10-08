@@ -42,3 +42,31 @@ def matching(left,right,edge):
         return u1
     else:
         return 0
+
+def fake_matching(left,right,edge):
+    if left and right and edge:
+        M_size=max(len(left),len(right))
+        matrix=[]
+        right_dic={}
+        for i in range(M_size):
+            if i<len(right):
+                right_dic[right[i][0]]=i
+        for i in range(M_size):
+            if i<len(left):
+                row=[0]*M_size
+                for j in range(len(edge)):
+                    if left[i][0]==edge[j][0]:
+                        row[right_dic[edge[j][1]]]=edge[j][2]
+                matrix.append(row)
+            else:
+                row=[0]*M_size
+                matrix.append(row)
+        matrix=matrix
+        cost=np.array(matrix)
+        cost=100-cost
+        row_ind,col_ind=linear_sum_assignment(cost)
+        cost=100-cost
+        u1=cost[row_ind,col_ind].sum()
+        return u1
+    else:
+        return 0
