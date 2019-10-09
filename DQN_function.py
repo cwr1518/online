@@ -9,7 +9,7 @@ logfile=str("DQNF"+time_number+".txt")
 file_handle=open(logfile,mode="w")
 filename="11.txt"
 graph=Graph(filename)
-H=100000
+H=1000
 lmin=30
 lmax=50
 actions=[0,1]
@@ -73,7 +73,10 @@ if __name__=='__main__':
                       e_greedy=0.9,
                       replace_target_iter=200,
                       memory_size=2000,
-                      output_graph=True
+                      output_graph=True,
+                      restore=False
                       )
     run_net()
+    RL.saver.save(RL.sess,"./model_saved/model_test")
+    RL.plot_cost()
 

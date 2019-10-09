@@ -30,6 +30,7 @@ class DeepQNetwork:
             batch_size=64,
             e_greedy_increment=0.005,
             output_graph=False,
+            restore=False
     ):
         self.n_actions = n_actions
         self.n_features = n_features
@@ -42,7 +43,7 @@ class DeepQNetwork:
         self.epsilon_increment = e_greedy_increment
         self.undo=0.7
         self.epsilon = 0 if e_greedy_increment is not None else self.epsilon_max
-
+        self.restore=restore
         # total learning step
         self.learn_step_counter = 0
 
@@ -59,12 +60,18 @@ class DeepQNetwork:
             self.target_replace_op = [tf.assign(t, e) for t, e in zip(t_params, e_params)]
 
         self.sess = tf.Session()
-
+        self.saver=tf.train.Saver()
         if output_graph:
             # $ tensorboard --logdir=logs
             tf.summary.FileWriter("logs/", self.sess.graph)
-
-        self.sess.run(tf.global_variables_initializer())
+        if self.restore:
+            ckpt = tf.train.get_checkpoint_state('./model_saved')
+            if ckpt and ckpt.model_checkpoint_path:
+                self.saver.restore(self.sess, ckpt.model_checkpoint_path)
+            else:
+                self.sess.run(tf.global_variables_initializer())
+        else:
+            self.sess.run(tf.global_variables_initializer())
         self.cost_his = []
 
     def _build_net(self):
