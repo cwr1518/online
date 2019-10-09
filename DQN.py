@@ -24,11 +24,11 @@ class DeepQNetwork:
             n_features,
             learning_rate=0.01,
             reward_decay=0.9,
-            e_greedy=0.9,
+            e_greedy=0.4,
             replace_target_iter=30,
             memory_size=500,
-            batch_size=32,
-            e_greedy_increment=None,
+            batch_size=64,
+            e_greedy_increment=0.005,
             output_graph=False,
     ):
         self.n_actions = n_actions
@@ -40,6 +40,7 @@ class DeepQNetwork:
         self.memory_size = memory_size
         self.batch_size = batch_size
         self.epsilon_increment = e_greedy_increment
+        self.undo=0.7
         self.epsilon = 0 if e_greedy_increment is not None else self.epsilon_max
 
         # total learning step
@@ -117,8 +118,12 @@ class DeepQNetwork:
             # forward feed the observation and get q value for every actions
             actions_value = self.sess.run(self.q_eval, feed_dict={self.s: observation})
             action = np.argmax(actions_value)
+            print("net",action)
         else:
-            action = np.random.randint(0, self.n_actions)
+            if np.random.uniform()>self.undo:
+                action = np.random.randint(0, self.n_actions)
+            else:
+                action=0
             print("随机",action)
         return action
 

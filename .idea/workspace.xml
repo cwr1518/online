@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d00e6933-d73c-4e62-b1db-97e0e4db69c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/123.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DQN.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DQN_function.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shiyan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/在线二分匹配程序.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/在线二分匹配程序.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/C.py" beforeDir="false" afterPath="$PROJECT_DIR$/C.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQN.py" beforeDir="false" afterPath="$PROJECT_DIR$/DQN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQN_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/DQN_function.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RQL.py" beforeDir="false" afterPath="$PROJECT_DIR$/RQL.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_node.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_node.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/match.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readingfunction.py" beforeDir="false" afterPath="$PROJECT_DIR$/readingfunction.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +30,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../DQN/online" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -73,7 +67,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="C" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="DQN" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="在线二分匹配程序" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -85,7 +79,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/C.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DQN.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,10 +154,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.DQN_function" />
+        <item itemvalue="Python.RQL" />
+        <item itemvalue="Python.DQN" />
         <item itemvalue="Python.readingfunction" />
         <item itemvalue="Python.123" />
-        <item itemvalue="Python.RQL" />
-        <item itemvalue="Python.C" />
       </list>
     </recent_temporary>
   </component>

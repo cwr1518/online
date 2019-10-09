@@ -11,7 +11,7 @@ alpha=0.3
 lmin=3
 lmax=10
 C=50
-H=20000
+H=100000
 u=0
 #初始化Q表
 Q={}
@@ -20,7 +20,7 @@ for i in range(C):
         for iii in range(lmin,lmax):
             for iiii in range(iii,lmax):
                 Q_temp=(i,ii,iii,iiii)
-                Q[Q_temp]=random.randint(3,4)
+                Q[Q_temp]=random.uniform(0,1)
 
 #执行
 for i in range(1):
