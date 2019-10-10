@@ -4,12 +4,12 @@ import match
 import numpy as np
 import time
 
-time_number=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+time_number=time.strftime('%Y-%m-%d %H-%M-%S',time.localtime(time.time()))
 logfile=str("DQNF"+time_number+".txt")
 file_handle=open(logfile,mode="w")
 filename="11.txt"
 graph=Graph(filename)
-H=100000
+H=20000
 lmin=30
 lmax=50
 actions=[0,1]
@@ -76,4 +76,7 @@ if __name__=='__main__':
                       output_graph=True
                       )
     run_net()
+    file_handle.close()
+    RL.plot_cost()
+
 
