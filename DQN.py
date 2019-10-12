@@ -22,12 +22,12 @@ class DeepQNetwork:
             self,
             n_actions,
             n_features,
-            learning_rate=0.01,
+            learning_rate=0.001,
             reward_decay=0.9,
             e_greedy=0.4,
             replace_target_iter=30,
-            memory_size=500,
-            batch_size=64,
+            memory_size=1000,
+            batch_size=128,
             e_greedy_increment=0.005,
             output_graph=False,
             restore=False
@@ -87,15 +87,23 @@ class DeepQNetwork:
         with tf.variable_scope('eval_net'):
             e1 = tf.layers.dense(self.s, 20, tf.nn.relu, kernel_initializer=w_initializer,
                                  bias_initializer=b_initializer, name='e1')
-            self.q_eval = tf.layers.dense(e1, self.n_actions, kernel_initializer=w_initializer,
+            e2 = tf.layers.dense(e1, 20, tf.nn.relu, kernel_initializer=w_initializer,
+                                 bias_initializer=b_initializer, name='e2')
+            e3 = tf.layers.dense(e2, 20, tf.nn.relu, kernel_initializer=w_initializer,
+                                 bias_initializer=b_initializer, name='e3')
+            self.q_eval = tf.layers.dense(e3, self.n_actions, kernel_initializer=w_initializer,
                                           bias_initializer=b_initializer, name='q')
 
         # ------------------ build target_net ------------------
         with tf.variable_scope('target_net'):
             t1 = tf.layers.dense(self.s_, 20, tf.nn.relu, kernel_initializer=w_initializer,
                                  bias_initializer=b_initializer, name='t1')
-            self.q_next = tf.layers.dense(t1, self.n_actions, kernel_initializer=w_initializer,
-                                          bias_initializer=b_initializer, name='t2')
+            t2 = tf.layers.dense(t1, 20, tf.nn.relu, kernel_initializer=w_initializer,
+                                 bias_initializer=b_initializer, name='t2')
+            t3 = tf.layers.dense(t2, 20, tf.nn.relu, kernel_initializer=w_initializer,
+                                 bias_initializer=b_initializer, name='t3')
+            self.q_next = tf.layers.dense(t3, self.n_actions, kernel_initializer=w_initializer,
+                                          bias_initializer=b_initializer, name='t4')
 
         with tf.variable_scope('q_target'):
             q_target = self.r + self.gamma * tf.reduce_max(self.q_next, axis=1, name='Qmax_s_')    # shape=(None, )

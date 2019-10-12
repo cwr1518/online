@@ -4,12 +4,12 @@ import match
 import numpy as np
 import time
 
-time_number=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+time_number=time.strftime('%Y-%m-%d %H-%M-%S',time.localtime(time.time()))
 logfile=str("DQNF"+time_number+".txt")
 file_handle=open(logfile,mode="w")
 filename="11.txt"
 graph=Graph(filename)
-H=1000
+H=10000
 lmin=30
 lmax=50
 actions=[0,1]
@@ -24,8 +24,7 @@ def run_net():
     r_num = len(graph.right)
     global all_reward,record_old
     reward=0
-    l,t = 1,1
-    l = lmin
+    l,t = 0,1
     while t<H:
         l_num = len(graph.left)
         r_num = len(graph.right)
@@ -37,18 +36,18 @@ def run_net():
             l_num_ = len(graph.left)
             r_num_ = len(graph.right)
             reward=0
-            l=l+1
+            l=graph.existing_time()
             state_ = np.array([l_num_, r_num_, match.fake_matching(graph.left, graph.right, graph.edge), l])
             RL.store_transition(state, action, reward, state_)
             t=t+1
         else:
             reward = match.matching(graph.left, graph.right, graph.edge)
-            print("r",reward)
+            print("r",reward,"左边",l_num,"右边",r_num)
             graph.time_update()
             graph.input_new_point(t)
             l_num_ = len(graph.left)
             r_num_ = len(graph.right)
-            l=1
+            l=graph.existing_time()
             state_=np.array([l_num_,r_num_,match.fake_matching(graph.left, graph.right, graph.edge),l])
             RL.store_transition(state, action, reward, state_)
             t=t+1
@@ -68,15 +67,16 @@ def run_net():
 
 if __name__=='__main__':
     RL = DeepQNetwork(2, 4,
-                      learning_rate=0.01,
+                      learning_rate=0.001,
                       reward_decay=0.9,
                       e_greedy=0.9,
                       replace_target_iter=200,
                       memory_size=2000,
                       output_graph=True,
-                      restore=False
+                      restore=True
                       )
     run_net()
+    file_handle.close()
     RL.saver.save(RL.sess,"./model_saved/model_test")
     RL.plot_cost()
 

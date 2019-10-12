@@ -16,17 +16,23 @@ class Graph():
             #print("jinru")
             self.line=self.line+2
             if lines[self.line]!="右边\n":
-                self.left.append(list(map(int,lines[self.line].split(' '))))
+                l_=list(map(int,lines[self.line].split(' ')))
+                l_.append(0)
+                self.left.append(l_)
                 self.line=self.line+2
                 if lines[self.line]!="边值\n":  #该操建立在每次双边都会来的基础上
-                    self.right.append(list(map(int,lines[self.line].split(' '))))
+                    r_=list(map(int,lines[self.line].split(' ')))
+                    r_.append(0)
+                    self.right.append(r_)
                     self.line=self.line+2
                 else:
                     self.line=self.line+1
             else:
                 self.line=self.line+1
                 if lines[self.line]!="边值\n":  #左边无点到来，右边有
-                    self.right.append(list(map(int,lines[self.line].split(' '))))
+                    r_ = list(map(int, lines[self.line].split(' ')))
+                    r_.append(0)
+                    self.right.append(r_)
                     self.line=self.line+2
                 else:
                     self.line=self.line+1
@@ -71,3 +77,20 @@ class Graph():
         for tout in range(len(r_timeout)):
             self.delet_edge(self.edge, ' ', self.right[r_timeout[len(r_timeout) - tout - 1]][0])
             self.right.pop(r_timeout[len(r_timeout) - tout - 1])
+        if self.left:
+            for lk in range(len(self.left)):
+                self.left[lk][2]=self.left[lk][2]+1
+        if self.right:
+            for rk in range(len(self.right)):
+                self.right[rk][2]=self.right[rk][2]+1
+    def existing_time(self):
+        l=0
+        r=0
+        if self.left:
+            for lk in range(len(self.left)):
+                l=self.left[lk][2]+l
+        if self.right:
+            for rk in range(len(self.right)):
+                r=self.right[rk][2]+r
+        mean=(l+r)/(len(self.left)+len(self.right))
+        return mean
