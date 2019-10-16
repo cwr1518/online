@@ -2,18 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d00e6933-d73c-4e62-b1db-97e0e4db69c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/C_dynamic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bandit_function.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static_batch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/在线二分匹配程序.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/在线二分匹配程序.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/C.py" beforeDir="false" afterPath="$PROJECT_DIR$/C.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DQN.py" beforeDir="false" afterPath="$PROJECT_DIR$/DQN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-10 21-02-12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-10 21-30-10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-10 21-30-30.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-11 09-42-54.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-11 09-43-25.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-11 09-46-58.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-11 10-15-44.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-11 10-42-12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-11 11-10-18.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-11 11-42-38.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-11 15-46-03.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DQNF2019-10-12 08-09-27.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DQN_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/DQN_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OPT_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/OPT_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_node.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_node.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model_saved/checkpoint" beforeDir="false" afterPath="$PROJECT_DIR$/model_saved/checkpoint" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model_saved/model_test.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/model_saved/model_test.data-00000-of-00001" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model_saved/model_test.index" beforeDir="false" afterPath="$PROJECT_DIR$/model_saved/model_test.index" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model_saved/model_test.meta" beforeDir="false" afterPath="$PROJECT_DIR$/model_saved/model_test.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readingfunction.py" beforeDir="false" afterPath="$PROJECT_DIR$/readingfunction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readingfunction.py" beforeDir="false" afterPath="$PROJECT_DIR$/greedyfunction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readinglog.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shiyan.py" beforeDir="false" afterPath="$PROJECT_DIR$/shiyan.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,8 +72,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.DQN_function">
-    <configuration name="DQN" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.shiyan">
+    <configuration name="C" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="在线二分匹配程序" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -65,7 +85,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DQN.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/C.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -116,7 +136,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="RQL" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="greedyfunction" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="在线二分匹配程序" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -128,7 +148,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RQL.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/greedyfunction.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -137,7 +157,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="readingfunction" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="shiyan" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="在线二分匹配程序" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -149,7 +169,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/readingfunction.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/shiyan.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,11 +180,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.shiyan" />
         <item itemvalue="Python.DQN_function" />
-        <item itemvalue="Python.readingfunction" />
-        <item itemvalue="Python.DQN" />
         <item itemvalue="Python.OPT_function" />
-        <item itemvalue="Python.RQL" />
+        <item itemvalue="Python.greedyfunction" />
+        <item itemvalue="Python.C" />
       </list>
     </recent_temporary>
   </component>

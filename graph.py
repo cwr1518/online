@@ -92,5 +92,12 @@ class Graph():
         if self.right:
             for rk in range(len(self.right)):
                 r=self.right[rk][2]+r
-        mean=(l+r)/(len(self.left)+len(self.right))
-        return mean
+        if l==0:
+            l_mean=0
+        else:
+            l_mean=l/len(self.left)
+        if r==0:
+            r_mean=0
+        else:
+            r_mean=r/len(self.right)
+        return l_mean,r_mean

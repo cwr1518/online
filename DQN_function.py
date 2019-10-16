@@ -3,32 +3,31 @@ from DQN import DeepQNetwork
 import match
 import numpy as np
 import time
+import os
+import tensorflow as tf
+module_path = os.path.dirname(__file__)
 
-time_number=time.strftime('%Y-%m-%d %H-%M-%S',time.localtime(time.time()))
-logfile=str("DQNF"+time_number+".txt")
-file_handle=open(logfile,mode="w")
-filename="11.txt"
-graph=Graph(filename)
-H=10000
+filename="16_15_1.5.txt"
+H=15000
 lmin=30
 lmax=50
 actions=[0,1]
-all_reward=0
-record=0
-record_old=0
+
 def run_net():
+    all_reward=0
+    record=0
+    record_old=0
     t=0
     graph.time_update()
     graph.input_new_point(t)
     l_num = len(graph.left)
     r_num = len(graph.right)
-    global all_reward,record_old
     reward=0
-    l,t = 0,1
+    l_l,l_r,t = 0,0,1
     while t<H:
         l_num = len(graph.left)
         r_num = len(graph.right)
-        state=np.array([l_num,r_num,match.fake_matching(graph.left,graph.right,graph.edge),l])
+        state=np.array([l_num,r_num,match.fake_matching(graph.left,graph.right,graph.edge),l_l,l_r])
         action=RL.choose_action(state)
         if action==0:
             graph.time_update()
@@ -36,8 +35,8 @@ def run_net():
             l_num_ = len(graph.left)
             r_num_ = len(graph.right)
             reward=0
-            l=graph.existing_time()
-            state_ = np.array([l_num_, r_num_, match.fake_matching(graph.left, graph.right, graph.edge), l])
+            l_l,l_r=graph.existing_time()
+            state_ = np.array([l_num_, r_num_, match.fake_matching(graph.left, graph.right, graph.edge), l_l,l_r])
             RL.store_transition(state, action, reward, state_)
             t=t+1
         else:
@@ -47,8 +46,8 @@ def run_net():
             graph.input_new_point(t)
             l_num_ = len(graph.left)
             r_num_ = len(graph.right)
-            l=graph.existing_time()
-            state_=np.array([l_num_,r_num_,match.fake_matching(graph.left, graph.right, graph.edge),l])
+            l_l,l_r=graph.existing_time()
+            state_=np.array([l_num_,r_num_,match.fake_matching(graph.left, graph.right, graph.edge),l_l,l_r])
             RL.store_transition(state, action, reward, state_)
             t=t+1
         if (t > 200) and (t % 30 == 0):
@@ -66,17 +65,28 @@ def run_net():
 
 
 if __name__=='__main__':
-    RL = DeepQNetwork(2, 4,
+    netsaver="./model_saved_16_10/model_test_10"
+    netsavefold="./model_saved_16_10"
+    for o in range(2):
+        tf.reset_default_graph()
+        RL = DeepQNetwork(2, 5,
                       learning_rate=0.001,
                       reward_decay=0.9,
                       e_greedy=0.9,
                       replace_target_iter=200,
                       memory_size=2000,
                       output_graph=True,
-                      restore=True
+                      restore=True,
+                      if_learning=False,
+                      netsavefold=netsavefold
                       )
-    run_net()
-    file_handle.close()
-    RL.saver.save(RL.sess,"./model_saved/model_test")
+        graph=Graph(filename)
+        time_number=time.strftime('%Y-%m-%d-%H-%M-%S',time.localtime(time.time()))
+        logfile=str(module_path+"/DQNlog/"+"DQNF"+filename+time_number+".txt")
+        file_handle=open(logfile,mode="w")
+        run_net()
+        RL.saver.save(RL.sess,netsaver)
+        file_handle.close()
+
     RL.plot_cost()
 

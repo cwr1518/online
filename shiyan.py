@@ -1,6 +1,14 @@
+import numpy as np
+import matplotlib.mlab as mlab
+import matplotlib.pyplot as plt
 
-import random
 
-while True:
-    for i in range(3):
-        print(i)
+def demo1():
+    mu ,sigma = 0.7, 0.4
+    sampleNo = 10000
+    np.random.seed(0)
+    s = np.random.normal(mu, sigma, sampleNo)
+    plt.hist(s, bins=100, normed=True)
+    plt.show()
+
+demo1()

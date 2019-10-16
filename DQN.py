@@ -28,9 +28,11 @@ class DeepQNetwork:
             replace_target_iter=30,
             memory_size=1000,
             batch_size=128,
-            e_greedy_increment=0.005,
+            e_greedy_increment=0.003,
             output_graph=False,
-            restore=False
+            restore=False,
+            if_learning=True,
+            netsavefold=False
     ):
         self.n_actions = n_actions
         self.n_features = n_features
@@ -41,9 +43,11 @@ class DeepQNetwork:
         self.memory_size = memory_size
         self.batch_size = batch_size
         self.epsilon_increment = e_greedy_increment
-        self.undo=0.7
+        self.undo=0.77
         self.epsilon = 0 if e_greedy_increment is not None else self.epsilon_max
         self.restore=restore
+        self.if_learning=if_learning
+        self.netsavefold=netsavefold
         # total learning step
         self.learn_step_counter = 0
 
@@ -65,7 +69,7 @@ class DeepQNetwork:
             # $ tensorboard --logdir=logs
             tf.summary.FileWriter("logs/", self.sess.graph)
         if self.restore:
-            ckpt = tf.train.get_checkpoint_state('./model_saved')
+            ckpt = tf.train.get_checkpoint_state(self.netsavefold)
             if ckpt and ckpt.model_checkpoint_path:
                 self.saver.restore(self.sess, ckpt.model_checkpoint_path)
             else:
@@ -129,46 +133,52 @@ class DeepQNetwork:
         # to have batch dimension when feed into tf placeholder
         observation = observation[np.newaxis, :]
 
-        if np.random.uniform() < self.epsilon:
+        if self.if_learning:
+
+            if np.random.uniform() < self.epsilon:
             # forward feed the observation and get q value for every actions
+                actions_value = self.sess.run(self.q_eval, feed_dict={self.s: observation})
+                action = np.argmax(actions_value)
+                print("net",action)
+            else:
+                if np.random.uniform()>self.undo:
+                    action = np.random.randint(0, self.n_actions)
+                else:
+                    action=0
+                print("随机",action)
+        else:
             actions_value = self.sess.run(self.q_eval, feed_dict={self.s: observation})
             action = np.argmax(actions_value)
-            print("net",action)
-        else:
-            if np.random.uniform()>self.undo:
-                action = np.random.randint(0, self.n_actions)
-            else:
-                action=0
-            print("随机",action)
         return action
 
     def learn(self):
         # check to replace target parameters
-        if self.learn_step_counter % self.replace_target_iter == 0:
-            self.sess.run(self.target_replace_op)
-            print('\ntarget_params_replaced\n')
+        if self.if_learning:
+            if self.learn_step_counter % self.replace_target_iter == 0:
+                self.sess.run(self.target_replace_op)
+                print('\ntarget_params_replaced\n')
 
         # sample batch memory from all memory
-        if self.memory_counter > self.memory_size:
-            sample_index = np.random.choice(self.memory_size, size=self.batch_size)
-        else:
-            sample_index = np.random.choice(self.memory_counter, size=self.batch_size)
-        batch_memory = self.memory[sample_index, :]
+            if self.memory_counter > self.memory_size:
+                sample_index = np.random.choice(self.memory_size, size=self.batch_size)
+            else:
+                sample_index = np.random.choice(self.memory_counter, size=self.batch_size)
+            batch_memory = self.memory[sample_index, :]
 
-        _, cost = self.sess.run(
-            [self._train_op, self.loss],
-            feed_dict={
-                self.s: batch_memory[:, :self.n_features],
-                self.a: batch_memory[:, self.n_features],
-                self.r: batch_memory[:, self.n_features + 1],
-                self.s_: batch_memory[:, -self.n_features:],
-            })
+            _, cost = self.sess.run(
+                [self._train_op, self.loss],
+                feed_dict={
+                    self.s: batch_memory[:, :self.n_features],
+                    self.a: batch_memory[:, self.n_features],
+                    self.r: batch_memory[:, self.n_features + 1],
+                    self.s_: batch_memory[:, -self.n_features:],
+                })
 
-        self.cost_his.append(cost)
+            self.cost_his.append(cost)
 
         # increasing epsilon
-        self.epsilon = self.epsilon + self.epsilon_increment if self.epsilon < self.epsilon_max else self.epsilon_max
-        self.learn_step_counter += 1
+            self.epsilon = self.epsilon + self.epsilon_increment if self.epsilon < self.epsilon_max else self.epsilon_max
+            self.learn_step_counter += 1
 
     def plot_cost(self):
         import matplotlib.pyplot as plt

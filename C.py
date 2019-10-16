@@ -1,17 +1,20 @@
+# -*- coding: utf-8 -*-
 import random
 from edge_action import delet_edge
 from time_update import time_update
 from create_node import create_left_node
 from create_node import create_right_node
 from match import matching
+
 import print_state
 left=[]
 right=[]
 edge=[]
 num=0
 u=0
-file_handle=open("11.txt",mode="w")
-for i in range(100000):
+t=15
+file_handle=open("16_15_1.5.txt",mode="w")
+for i in range(15003):
     edge_temp=[]
     time_update(left,right,edge)
     file_handle.writelines(["第",str(i),"轮\n"])
@@ -19,15 +22,17 @@ for i in range(100000):
     a=random.randint(1,4)
     if(a>2):   #决定了左边点到来的频率，以及生存时间
         num=num+1
-        create_left_node(left,right,edge,num,edge_temp,file_handle)
+        create_left_node(left,right,edge,num,edge_temp,file_handle,t)
     file_handle.write("右边\n")
     if(a<=2):   #决定了右边点到来的频率，以及生存时间
         num=num+1
-        create_right_node(left,right,edge,num,edge_temp,file_handle)
+        create_right_node(left,right,edge,num,edge_temp,file_handle,t)
     file_handle.write("边值\n")
     for ii in range(len(edge_temp)):
         file_handle.writelines([str(edge_temp[ii][0])," ",str(edge_temp[ii][1])," ",str(edge_temp[ii][2]),"\n"])
     print_state.print_state(left,right,edge,i)
+    #if i>5000:
+     #   t=12
     #print("matric:")
     #if i%9==0:
      #   u=matching(left,right,edge)+u
